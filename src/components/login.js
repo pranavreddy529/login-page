@@ -48,52 +48,51 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#FAF3F3] relative">
-     
-      <div className="absolute inset-0 bg-gradient-to-br from-[#EBA2A3] to-[#AF8A7E] opacity-30 animate-pulse"></div>
-
-      <div className="w-1/2 flex flex-col items-center justify-center p-10 text-white bg-[#EBA2A3] bg-opacity-90 shadow-lg rounded-r-3xl relative z-10">
+    <div className="min-h-screen bg-[#FAF3F3] flex flex-col items-center">
+      {/* Navbar */}
+      <nav className="w-full bg-[#675941] p-4 flex items-center shadow-md">
         <img
-          src="https://media.licdn.com/dms/image/v2/D563DAQFBCF9vO8EpzQ/image-scale_191_1128/image-scale_191_1128/0/1738575412328/lumetechnologies_cover?e=1741330800&v=beta&t=RqDZYFQaoRQopj9TotlcDsx3U9YanIgDd-sbDVwd24I"
-          alt="Company Logo"
-          className="w-120 h-20 transition-transform transform hover:scale-110"
+          src="https://mail.google.com/mail/u/0?ui=2&ik=d5bd152f61&attid=0.1&permmsgid=msg-f:1825316892798453778&th=1954d40b05c58812&view=fimg&fur=ip&permmsgid=msg-f:1825316892798453778&sz=s0-l75-ft&attbid=ANGjdJ-TUZj0MmOHWrdJ4jWIgh-NPSzToRyke8Nodda8lnYWSmf8V2lfn9EDp-qlmkKbDnwj9wD_iPwHd5W1g8ArqvOLRq8r3zceYInUClUT5XECmlVYG8LXpz7StFM&disp=emb&realattid=ii_m7oy9cqc0&zw"
+          alt="Novalume Logo"
+          className="h-12 mr-6 bg-white p-2 rounded-lg shadow-md"
         />
-        <h2 className="text-3xl font-bold mt-4 animate-fade-in">Welcome to Our Platform</h2>
-        <p className="mt-2 text-lg opacity-80">Power Perfected</p>
-      </div>
-
-     
-      <div className="w-1/2 flex items-center justify-center p-10">
-        <div className="w-full max-w-md bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-xl shadow-2xl transition duration-500 hover:scale-105 relative z-10">
+        <div className="flex space-x-6 text-white font-medium">
+          <a href="/" className="hover:underline">Home</a>
+          <a href="/products" className="hover:underline">Products</a>
+          <a href="/about" className="hover:underline">About</a>
+          <a href="/contact" className="hover:underline">Contact</a>
+        </div>
+      </nav>
+      
+      {/* Auth Form */}
+      <div className="flex flex-col items-center justify-center flex-grow w-full p-6">
+        <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg relative z-10">
           <h2 className="text-2xl font-bold text-center mb-6 text-[#CD968B]">
             {isLogin ? "Login" : "Sign Up"}
           </h2>
           <form onSubmit={handleSubmit}>
-          
             <div className="mb-4">
               <label className="block text-gray-700">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#CD968B] focus:outline-none transition duration-300"
+                className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#CD968B] focus:outline-none"
                 required
               />
             </div>
 
-        
             <div className="mb-4">
               <label className="block text-gray-700">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#AF8A7E] focus:outline-none transition duration-300"
+                className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#AF8A7E] focus:outline-none"
                 required
               />
             </div>
 
-          
             {!isLogin && (
               <div className="mb-4">
                 <label className="block text-gray-700">Confirm Password</label>
@@ -101,32 +100,28 @@ export default function AuthPage() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#AF8A7E] focus:outline-none transition duration-300"
+                  className="w-full p-3 border border-gray-300 rounded mt-1 focus:ring-2 focus:ring-[#AF8A7E] focus:outline-none"
                   required
                 />
               </div>
             )}
 
-          
             <button
               type="submit"
-              className={`w-full py-2 rounded mt-4 transition duration-300 ${
-                loading
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#CD968B] hover:bg-[#AF8A7E]"
-              } text-white`}
+              className={`w-full py-2 rounded mt-4 text-white ${
+                loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#CD968B]"
+              }`}
               disabled={loading}
             >
               {loading ? "Processing..." : isLogin ? "Login" : "Sign Up"}
             </button>
           </form>
 
-         
           <p className="mt-4 text-center text-gray-600">
-            {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+            {isLogin ? "Don't have an account?" : "Already have an account?"} {" "}
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="text-[#CD968B] hover:underline transition duration-300"
+              className="text-[#CD968B] hover:underline"
             >
               {isLogin ? "Sign up" : "Login"}
             </button>
@@ -136,3 +131,4 @@ export default function AuthPage() {
     </div>
   );
 }
+
